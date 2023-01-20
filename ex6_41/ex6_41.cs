@@ -15,17 +15,17 @@ internal class Program
         {
             Console.Clear();
             Console.WriteLine("Введите M (1-20):");
-            int number = InputNumberTryCatch();
+            int number = InputNumberTryParse();
             while (number < 1 || number > 20)
             {
                 Console.WriteLine("Допустимы положительные числа числа от 1 до 20! Введите еще раз:");
-                number = InputNumberTryCatch();
+                number = InputNumberTryParse();
             }
             int[] arr = new int[number];
             Console.WriteLine("Введите {0} чисел:", number);
             for (int i = 0; i < arr.Length; i++)
             {
-                arr[i] = InputNumberTryCatch();
+                arr[i] = InputNumberTryParse();
             }
             return arr;
         }
@@ -38,7 +38,7 @@ internal class Program
                 if (int.TryParse(Console.ReadLine(), out number))
                     return number;
                 else
-                    Console.Write("Ошибка ввода! Введите еще раз: ");
+                    Console.WriteLine("Ошибка ввода! Введите еще раз: ");
             }
         }
 
