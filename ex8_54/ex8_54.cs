@@ -15,14 +15,14 @@ internal class Program
     {
         Program p = new Program(); // для доступа к полиморфным фукциям печати массивов
 
-        int rows = InputPositiveNumberTryParse("Введите количество строк в массиве:");
-        int columns = InputPositiveNumberTryParse("Введите количество столбцов в массиве:");
+        int rows = InputPositiveNumber("Введите количество строк в массиве:");
+        int columns = InputPositiveNumber("Введите количество столбцов в массиве:");
         int[,] array = GenerateArray(rows, columns, -20, 20);
         p.PrintArray(array, "Исходный Массив:");
         SortRows(array);
         p.PrintArray(array, "После сортировки строк:");
 
-        static int InputPositiveNumberTryParse(string msg)
+        static int InputPositiveNumber(string msg)
         {
             Console.WriteLine(msg);
             while (true)
