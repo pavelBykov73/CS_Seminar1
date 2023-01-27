@@ -88,7 +88,7 @@ internal class Program
         }
     }
 
-    void PrintArray(int[,] arr, string msg = "")
+    void PrintArray(int?[,] arr, string msg = "")
     {
         Console.WriteLine(msg);
         for (int i = 0; i < arr.GetLength(0); i++)
