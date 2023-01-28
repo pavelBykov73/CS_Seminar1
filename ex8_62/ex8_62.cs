@@ -5,22 +5,27 @@
 11 16 15 06
 10 09 08 07
  */
+//using ex8_62.ArrayFiller
+
+using ex8_62;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
         Program p = new Program(); // для доступа к полиморфным фукциям печати массивов
+        ArrayFiller filler = new ArrayFiller(); 
 
-        int?[,] matrix1 = Generate2DMatrixWithParam(0, 10, "Введите параметры матрицы");
-        p.PrintArray(matrix1, "Матрица 1:");
+        int[,] matrix1 = Generate2DMatrixWithParam(0, 10, "Введите параметры матрицы");
+        filler.FillMatrixSnail(matrix1);
+        p.PrintArray(matrix1, "Запонен \"улиткой\":");
 
-        int?[,] Generate2DMatrixWithParam(int minVal, int maxVal, string msg = "")
+        int[,] Generate2DMatrixWithParam(int minVal, int maxVal, string msg = "")
         {
             Console.WriteLine(msg);
             int rows = InputPositiveNumber("Введите количество строк:");
             int columns = InputPositiveNumber("Введите количество столбцов:");
-            int?[,] arr = GenerateArraySpirale(rows, columns);
+            int[,] arr = new int[rows, columns];
             return arr;
         }
 
@@ -37,68 +42,6 @@ internal class Program
                     Console.WriteLine("Ошибка ввода! Введите еще раз: ");
             }
         }
-
-        int?[,] GenerateArraySpirale(int row, int col)
-        {
-            int?[,] arr = new int?[row, col];
-            int val = 1;
-            int i = 0;
-            int j = 0;
-            int dir = 0;
-            arr[i, j] = val++;
-            while (val < row * col)
-            {
-                switch (dir)
-                {
-                    case 0:
-                        if (j + 1 >= col || arr[i, j + 1] != null)
-                        {
-                            dir = 1;
-                        }
-                        else
-                        {
-                            j++;
-                            arr[i, j] = val++;
-                        }
-                        break;
-                    case 1:
-                        if (i + 1 >= row || arr[i + 1, j] != null)
-                        {
-                            dir = 2;
-                        }
-                        else
-                        {
-                            i++;
-                            arr[i, j] = val++;
-                        }
-                        break;
-                    case 2:
-                        if (j - 1 <= 0 || arr[i, j - 1] != null)
-                        {
-                            dir = 3;
-                        }
-                        else
-                        {
-                            j--;
-                            arr[i, j] = val++;
-                        }
-                        break;
-                    case 3:
-                        if (i - 1 <= 0 || arr[i - 1, j] != null)
-                        {
-                            dir = 0;
-                        }
-                        else
-                        {
-                            i--;
-                            arr[i, j] = val++;
-                        }
-                        break;
-                }
-            }
-            return arr;
-        }
-
     }
     void PrintArray(double[,] arr, string msg = "")
     {
@@ -112,8 +55,7 @@ internal class Program
             Console.WriteLine("");
         }
     }
-
-    void PrintArray(int?[,] arr, string msg = "")
+    void PrintArray(int[,] arr, string msg = "")
     {
         Console.WriteLine(msg);
         for (int i = 0; i < arr.GetLength(0); i++)
@@ -143,5 +85,4 @@ internal class Program
         }
         Console.WriteLine("");
     }
-
 }
